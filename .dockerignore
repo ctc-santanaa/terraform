@@ -1,0 +1,7 @@
+.devcontainer/
+.git
+.git*
+.docker*
+*.Dockerfile
+output/*
+logs/*
