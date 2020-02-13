@@ -78,13 +78,22 @@ RUN echo "Disable ssl_verify for Conda" \
     && conda config --set ssl_verify False \
     && conda install --name base pylint --yes
 
+RUN echo "Allow docker in docker build commands to run" \
+    && apt-get install -y docker.io
+
 COPY requirements.txt .
+
+RUN echo "Add additional project specific packages" \
+    && apt-get install -y gcc unzip
+
+RUN echo "Installing terraform cli" \
+    && wget --no-check-certificate --quiet https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip -O terraform.zip \
+    && unzip terraform.zip \
+    && mv terraform /usr/local/bin/ \
+    && rm terraform.zip
 
 RUN echo "Install python packages" \
    && pip install -r requirements.txt
-
-RUN echo "Allow docker in docker build commands to run" \
-    && apt-get install -y docker.io
 
 RUN echo "Helpful for interactive container shells" \
     && echo "set -o vi" >> ~/.bashrc \
