@@ -102,5 +102,8 @@ RUN echo "Helpful for interactive container shells" \
 RUN echo "Avoid filemode issues with devcontainers" \
     && git config --global core.filemode false
 
+RUN echo "Additional certificate changes for azure commandline" \
+    && echo "export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/extra/ctc_chain.pem" >> ~/.bashrc
+
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
