@@ -17,10 +17,16 @@ and terraform changes.
 
 `terraform init`
 
-At this point, you can now run terraform plan. It will look for .tf files in the
-current directory, merge them, and then try to operate on the merged file.
-
 The bottom-line-innovations-rg was already created for us by the DSE team. We
 need to import it to match our terraform file.
 
 `terraform import azurerm_resource_group.abd-de-rg /subscriptions/378079de-70e6-423f-bf1a-93947a02ee38/resourceGroups/bottom-line-innovations-rg`
+
+At this point, you can now run terraform plan. It will look for .tf files in the
+current directory, merge them, and then try to operate on the merged file.
+
+`terraform plan`
+
+You can look at the output and decide if you want to deploy the changes.
+
+`terraform apply`
