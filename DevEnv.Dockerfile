@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "Updating package manager and add basic commands" \
     && apt-get update \
     && apt-get -y install --no-install-recommends apt-utils dialog \
-    && apt-get -y install iproute2 procps lsb-release wget curl git
+    && apt-get -y install iproute2 procps lsb-release wget curl git vim
 
 RUN echo "Add default locale en_*" \
     && apt-get -y install language-pack-en
