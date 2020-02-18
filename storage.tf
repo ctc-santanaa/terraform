@@ -8,7 +8,7 @@ resource "random_id" "abd-de-random-id" {
 }
 
 resource "azurerm_storage_account" "abd-de-storage-acct" {
-  name = format("diag%S", random_id.abd-de-random-id.hex)
+  name = format("diag%s", random_id.abd-de-random-id.hex)
   resource_group_name = azurerm_resource_group.abd-de-rg.name
   location = "northcentralus"
   account_replication_type = "LRS"
