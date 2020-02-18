@@ -12,14 +12,16 @@ your CTC azure credentials:
 
 `az login --use-device-code`
 
-Select the "id" value from the subscriptions your account has access to from the json
-list of dictionaries returned from the login commend.
+Now you need to initialize terraform in your environment in order to plan or apply
+and terraform changes.
 
-If you cleared your screen and need to re-output that list, run:
+`terraform init`
 
-`az account list`
+At this point, you can now run terraform plan. It will look for .tf files in the
+current directory, merge them, and then try to operate on the merged file.
 
-Once you have the id, set that as the default subscription you are going to use for
-the terraform operations:
+The bottom-line-innovations-rg was already created for us by the DSE team. We
+need to import it to match our terraform file.
 
-`az account set --subscription="<SUBCSCRIPTION_ID_HERE>"`
+`terraform import azurerm_resource_group.abd-dev-exp-rg /subscriptions/378079de-70e6-423f-bf1a-93947a02ee38/resourceGroups/bottom-line-innovations-rg`
+
