@@ -14,24 +14,37 @@ your CTC azure credentials:
 
 ## How to Run Terraform
 
-Now you need to initialize terraform in your environment in order to plan or apply
+* Now you need to initialize terraform in your environment in order to plan or apply
 and terraform changes.
 
 `terraform init`
 
-The bottom-line-innovations-rg was already created for us by the DSE team. We
+* The bottom-line-innovations-rg was already created for us by the DSE team. We
 need to import it to match our terraform file.
 
 `terraform import azurerm_resource_group.abd-de-rg /subscriptions/378079de-70e6-423f-bf1a-93947a02ee38/resourceGroups/bottom-line-innovations-rg`
 
-At this point, you can now run terraform plan. It will look for .tf files in the
+* At this point, you can now run terraform plan. It will look for .tf files in the
 current directory, merge them, and then try to operate on the merged file.
 
 `terraform plan`
 
-You can look at the output and decide if you want to deploy the changes.
+* You can look at the output and decide if you want to deploy the changes.
 
 `terraform apply`
+
+* You may have to reauthenticate at times if you get an error that looks like this:
+
+```
+root@610d5ba07933:/workspaces/terraform# terraform apply
+
+Error: Error building account: Error getting authenticated object ID: Error parsing json result from the Azure CLI: Error waiting for the Azure CLI: exit status 1
+
+  on provider.tf line 1, in provider "azurerm":
+   1: provider "azurerm" {
+```     
+
+Simply run `az login` again!
 
 ## How to get VM information
 
