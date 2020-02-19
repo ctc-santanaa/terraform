@@ -33,28 +33,3 @@ resource "azurerm_network_security_group" "abd-de-nsg" {
 
   tags = var.abd-de-tags
 }
-
-resource "azurerm_public_ip" "abd-de-ip" {
-  name = "abd-de-ip"
-  location = "northcentralus"
-  resource_group_name = azurerm_resource_group.abd-de-rg.name
-  allocation_method = "Dynamic"
-
-  tags = var.abd-de-tags
-}
-
-resource "azurerm_network_interface" "abd-de-nic" {
-  name = "abd-de-nic"
-  location = "northcentralus"
-  resource_group_name = azurerm_resource_group.abd-de-rg.name
-  network_security_group_id = azurerm_network_security_group.abd-de-nsg.id
-
-  ip_configuration {
-    name = "abd-de-nic-config"
-    subnet_id = azurerm_subnet.abd-de-subnet.id
-    private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.abd-de-ip.id
-  }
-
-  tags = var.abd-de-tags
-}

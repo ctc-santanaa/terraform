@@ -7,6 +7,6 @@ venv
 output
 logs
 
-.terraform
+.terraform*
 *.tfstate
 terraform.tfstate.backup

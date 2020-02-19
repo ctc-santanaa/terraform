@@ -1,12 +1,37 @@
-resource "azurerm_virtual_machine" "abd-de-vm-01" {
-    name = "abd-de-vm-01"
+resource "azurerm_public_ip" "abd-de-ip-demoprod02" {
+  name = "abd-de-ip-demoprod02"
+  location = "northcentralus"
+  resource_group_name = azurerm_resource_group.abd-de-rg.name
+  allocation_method = "Dynamic"
+
+  tags = var.abd-de-tags
+}
+
+resource "azurerm_network_interface" "abd-de-nic-demoprod02" {
+  name = "abd-de-nic-demoprod02"
+  location = "northcentralus"
+  resource_group_name = azurerm_resource_group.abd-de-rg.name
+  network_security_group_id = azurerm_network_security_group.abd-de-nsg.id
+
+  ip_configuration {
+    name = "abd-de-nic-config"
+    subnet_id = azurerm_subnet.abd-de-subnet.id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.abd-de-ip-demoprod02.id
+  }
+
+  tags = var.abd-de-tags
+}
+
+resource "azurerm_virtual_machine" "abd-de-vm-demoprod02" {
+    name = "abd-de-vm-demoprod02"
     location = "northcentralus"
     resource_group_name = azurerm_resource_group.abd-de-rg.name
-    network_interface_ids = [azurerm_network_interface.abd-de-nic.id]
+    network_interface_ids = [azurerm_network_interface.abd-de-nic-demoprod02.id]
     vm_size = "Standard_D2s_v3"
 
     storage_os_disk {
-        name = "abd-de-vm-01-OS-disk"
+        name = "abd-de-vm-demoprod02-OS-disk"
         caching = "ReadWrite"
         create_option = "FromImage"
         managed_disk_type = "Premium_LRS"
@@ -20,7 +45,7 @@ resource "azurerm_virtual_machine" "abd-de-vm-01" {
     }
 
     os_profile {
-        computer_name = "vm01"
+        computer_name = "demoprod02"
         admin_username = "azureuser"
     }
 
