@@ -12,6 +12,8 @@ your CTC azure credentials:
 
 `az login --use-device-code`
 
+## How to Run Terraform
+
 Now you need to initialize terraform in your environment in order to plan or apply
 and terraform changes.
 
@@ -30,3 +32,20 @@ current directory, merge them, and then try to operate on the merged file.
 You can look at the output and decide if you want to deploy the changes.
 
 `terraform apply`
+
+## How to get VM information
+
+You can query azure for VM information by first setting the subscription you are using:
+
+`az account set --subscription 378079de-70e6-423f-bf1a-93947a02ee38`
+
+Now you can query for VM information:
+
+`az vm list-ip-addresses`
+
+There are a couple of python scripts to help you parse the json output from the list-ip-addresses command:
+
+`az vm list-ip-addresses | python select_vm_info.py`
+`az vm list-ip-addresses | python select_vm_info.py | python generate_vm_ssh_config.py`
+
+The latter command will give you the text to copy and paste into your ~/.ssh/config file.
