@@ -28,7 +28,7 @@ resource "azurerm_virtual_machine" "abd-de-vm-win10dev" {
     location = "northcentralus"
     resource_group_name = azurerm_resource_group.abd-de-rg.name
     network_interface_ids = [azurerm_network_interface.abd-de-nic-win10dev.id]
-    vm_size = "Standard_D2s_v3"
+    vm_size = "Standard_D8s_v3"
 
     storage_os_disk {
         name = "abd-de-vm-win10dev-OS-disk"
