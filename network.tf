@@ -66,5 +66,17 @@ resource "azurerm_network_security_group" "abd-de-nsg" {
     destination_address_prefix = "*"
   }
 
+  security_rule {
+    name = "Port3389_RDP"
+    priority = 1005
+    direction = "Inbound"
+    access = "Allow"
+    protocol = "Tcp"
+    source_port_range = "*"
+    destination_port_range = "3389"
+    source_address_prefix = "*"
+    destination_address_prefix = "*"
+  }
+
   tags = var.abd-de-tags
 }
