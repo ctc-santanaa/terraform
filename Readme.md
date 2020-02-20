@@ -59,6 +59,13 @@ Now you can query for VM information:
 There are a couple of python scripts to help you parse the json output from the list-ip-addresses command:
 
 `az vm list-ip-addresses | python select_vm_info.py`
+
 `az vm list-ip-addresses | python select_vm_info.py | python generate_vm_ssh_config.py`
 
 The latter command will give you the text to copy and paste into your ~/.ssh/config file.
+
+## How to get VM Image information
+
+`az vm image list --all --output-table --publisher MicrosoftWindowsDesktop`
+
+`az vm image list --all --output-table --publisher Canonical`
