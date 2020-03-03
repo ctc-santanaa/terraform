@@ -28,7 +28,7 @@ resource "azurerm_virtual_machine" "abd-de-vm-teamcity" {
     location = "northcentralus"
     resource_group_name = azurerm_resource_group.abd-de-rg.name
     network_interface_ids = [azurerm_network_interface.abd-de-nic-teamcity.id]
-    vm_size = "Standard_D2s_v3"
+    vm_size = "Standard_D4s_v3"
 
     storage_os_disk {
         name = "abd-de-vm-teamcity-OS-disk"
